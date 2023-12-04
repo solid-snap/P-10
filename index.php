@@ -8,6 +8,7 @@
                         <li><a href="#">Random</a></li>
                         <li><a href="#">Random</a></li>
                         <li><a href="#">Kaart</a></li>
+                        <li><a href="login/login.php">login</a></li>
                     </ul>
                 </nav>
             </div>
