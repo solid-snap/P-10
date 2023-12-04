@@ -2,22 +2,14 @@ body{
     background-color: lightgray;
 }
 
-ul {
-    list-style-type: none;
-    margin: 10px;
-    padding: 0;
-    display: flex;
-}
-
-li {
-    margin: 20px;
-}
-
 a {
     text-decoration: none;
     color: #333;
+    font-size: 18px;
     font-weight: bold;
     font-family: sans-serif;
+    padding: 20px;
+    float: right;
 }
 
 .navigatie {
@@ -26,8 +18,9 @@ a {
 }
 
 #logo {
-    width: 150px;
-    height: 45px;
+    width: 190px;
+    height: 55px;
+    padding: 5px;
 }
 
 footer{
@@ -41,5 +34,5 @@ footer{
     left: 7px;
     right: 7px;
     height: auto;
-    padding-top: 20px;
+    padding: 20px;
 }
