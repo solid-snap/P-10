@@ -6,7 +6,7 @@
                         <img src="image/logo_rotterdam.svg" id=logo alt="logo van Gemeente Rotterdam" />
                         <a href="#">Klachten</a>
                         <a href="#">Random</a>
-                        <a href="#">Kaart</a>
+                        <a href="geolocation/map.php">Kaart</a>
                         <a href="login/login.php">login</a>
                 </nav>
             </div>
