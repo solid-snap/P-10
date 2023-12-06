@@ -4,10 +4,10 @@
             <div class="navigatie">
                 <nav>
                         <img src="image/logo_rotterdam.svg" id=logo alt="logo van Gemeente Rotterdam" />
+                        <a href="login/login.php">login</a>
                         <a href="#">Klachten</a>
                         <a href="#">Random</a>
                         <a href="geolocation/map.php">Kaart</a>
-                        <a href="login/login.php">login</a>
                 </nav>
             </div>
             <div class="image">
@@ -15,7 +15,8 @@
             </div>
         </body>
             <footer>
-                <div class="footer_rotterdam"> Gemeente <br> Rotterdam
+                <div class="footer_rotterdam">
+                    Gemeente <br> Rotterdam
                 </div>
                 <div class="contact">
                     <a href="files_andere/contact.html">Contact</a>
