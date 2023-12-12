@@ -254,7 +254,7 @@ class klacht
             echo $klacht["latitude"] . "-";
             $this->set_datum($klacht["datum"]);
             echo $klacht["datum"] . "-";
-            $this->set_opmerking($klacht["opmerking"]);
+            $this->set_omerking($klacht["opmerking"]);
             echo $klacht["opmerking"] . "<br>";
 
         }
