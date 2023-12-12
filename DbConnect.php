@@ -7,10 +7,10 @@ error_reporting(E_ALL);
 $servername = "localhost";
 $dbname = "p10";
 $username = "root";
-$password = "root";
+$DBpassword = "root";
 
 try{
-    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $DBpassword);
 } catch (PDOException $error){
     echo $error->getMessage();
 }

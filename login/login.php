@@ -1,18 +1,15 @@
+<link rel="stylesheet" href="../gemeenteStyle.css">
+<div class="pageInfo"><!-- HTML-form for login -->
 
-<link rel="stylesheet" href="?">
-<div class="pageInfo">
+    <div class="topnav" id="myTopNav">
 
-        <div class="topnav" id="myTopNav">
-
-    <nav>
-        <form method="POST" action="#">
-            <input type="text" name="naam" placeholder="naam" required><br>
-            <input type="password" name="wachtwoord" placeholder="wachtwoord" required><br>
-            <input type="submit" value="login">
-        </form>
-
-        </div>
-    </nav>
+        <nav>
+            <ul>
+                <li><a href="">Home</a></li>
+                <li><a href="">.</a></li>
+                <li><a href="login.php">login</a></li>
+            </ul>
+        </nav>
     </div>
 
 
@@ -24,7 +21,7 @@
     $dbpass = "root";
 
     // class for the user
-    class Beheer
+    class beheer
     {
         private $dbconn;
 
@@ -41,15 +38,15 @@
             }
         }
 
-        public function login($naam, $wachtwoord)
+        public function login($username, $password)
         {
             try {
                 // preparing the quary
-                $query = "SELECT * FROM beheer WHERE naam = :naam";
+                $query = "SELECT * FROM beheer WHERE username = :username";
                 $stmt = $this->dbconn->prepare($query);
 
                 // Parameters bind
-                $stmt->bindParam(':naam', $naam);
+                $stmt->bindParam(':username', $username);
 
                 // Query execute
                 $stmt->execute();
@@ -57,10 +54,10 @@
                 // verify users
                 if ($stmt->rowCount() > 0) {
                     $beheer = $stmt->fetch(PDO::FETCH_ASSOC);
-                    $storedPassword = $beheer['wachtwoord'];
+                    $storedPassword = $beheer['password'];
 
                     // password verify
-                    if (password_verify($wachtwoord, $storedPassword)) {
+                    if (password_verify($password, $storedPassword)) {
                         // login successful
                         return true;
                     }
@@ -75,15 +72,15 @@
     }
 
     // login system
-    $user = new User($dbhost, $dbname, $dbuser, $dbpass);
+    $beheer = new beheer($dbhost, $dbname, $dbuser, $dbpass);
 
     // login attempt verify
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $naam = $_POST["naam"];
-        $wachtwoord = $_POST["wachtwoord"];
+        $username = $_POST["username"];
+        $password = $_POST["password"];
 
-        if ($user->login($naam, $wachtwoord)) {
-            header("location://");
+        if ($beheer->login($username, $password)) {
+            header("location: login/test.php");
         } else {
             echo "Failed to login!";
         }
@@ -91,10 +88,10 @@
     ?>
 
     <form method="POST" action="#">
-        <input type="text" name="naam" placeholder="naam" required><br>
-        <input type="password" name="wachtwoord" placeholder="wachtwoord" required><br>
+        <input type="text" name="username" placeholder="username" required><br>
+        <input type="password" name="password" placeholder="password" required><br>
         <input type="submit" value="login">
     </form>
-
+    <H2><a href="?">?</a></H2>
 </div>
-<footer> bbq </footer>
+<footer> ? </footer>
