@@ -7,18 +7,28 @@
     <link rel="stylesheet" href="klachttemp.css">
 </head>
 <body>
-
-<!--
+<?php
 $username = "root";
 $password = "root";
-$conn = new PDO("mysql:host=localhost;dbname=p10",$username, $password);
-$select_wijk= $conn->prepare("SELECT * FROM wijk");
-$select_wijk>execute();
-$wijken = $select_wijk->fetchAll();
-foreach($wijken as $wijk) {
-    echo $wijk['naam'];
+try {
+    $conn = new PDO("mysql:host=localhost;dbname=p10",$username, $password);
+
+}catch (PDOException $error){
+    echo $error->getMessage();
 }
--->
+
+try {
+    $select_status= $conn->prepare("SELECT * FROM status");
+    $select_status->execute();
+    $status=$select_status->fetchAll();
+    $select_wijk= $conn->prepare("SELECT * FROM wijk");
+    $select_wijk->execute();
+    $wijken = $select_wijk->fetchAll();
+}catch (PDOException $error){
+    echo $error->getMessage();
+}
+
+?>
 
 <div class="form-container">
     <form action="create2.php" method="post">
@@ -36,7 +46,15 @@ foreach($wijken as $wijk) {
             <div class="half-width">
                 <label for="wijk">wijk:</label>
                 <select id="wijk" name="wijk" >
-                    <option value="noord">noord</option>
+
+                    <?php
+                    foreach($wijken as $wijk) {
+                        echo " <option value=" .  $wijk['naam'] . ">" . $wijk['naam']. "</option>";
+
+                    }
+
+                    ?>
+
                 </select>
 
                 <label for="datum">Datum:</label>
@@ -60,10 +78,11 @@ foreach($wijken as $wijk) {
                 <input type="file" id="foto" name="foto" accept="image/*">
             </div>
         </div>
+
         <div class="form-row">
             <input type ="hidden" id="longitude">
             <input type="hidden" id="latitude">
-            <input type="hidden" name="status">
+            <input type="hidden" name="status" value="<?php foreach($status as $st) {echo $st['naam'];} ?>">
             <input type="submit" value="Verzenden">
         </div>
         <script>
@@ -84,6 +103,18 @@ foreach($wijken as $wijk) {
 
             navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
         </script>
+        <?php if (isset($_FILES['image'])) {
+            $uploadDirectory = 'uploads/';
+            $uploadedFile = $_FILES['image']['tmp_name'];
+            $uploadedFileName = $_FILES['image']['name'];
+            $targetPath = $uploadDirectory . $uploadedFileName;
+            if (move_uploaded_file($uploadedFile, $targetPath)) {
+                echo 'Image uploaded successfully.';
+            }
+            else {
+                echo 'Error uploading image.';
+            }
+        }?>
     </form>
 </div>
 
