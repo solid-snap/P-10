@@ -1,5 +1,6 @@
 <?php
 require "../DbConnect.php";
+
 class klacht
 {
     private $Id;
@@ -15,22 +16,20 @@ class klacht
     private $datum;
     private $opmerking;
 
-
-    function __construct($wijken_Id =NULL, $status_Id =NULL, $klachtOmschrijving =NULL, $extraDetail =NULL, $image=NULL, $naam =NULL, $email =NULL,
-                         $longitude =NULL,$latitude =NULL, $datum =NULL, $opmerking =NULL)
+    function __construct($naam = NULL, $email = NULL, $wijken_Id = NULL, $datum = NULL, $klachtOmschrijving = NULL, $image = NULL,
+                         $longitude = NULL, $latitude = NULL)
     {
 
         $this->wijken_Id = $wijken_Id;
-        $this->status_Id = $status_Id;
         $this->klachtOmschrijving = $klachtOmschrijving;
-        $this->extraDetail = $extraDetail;
         $this->image = $image;
         $this->naam = $naam;
         $this->email = $email;
         $this->longitude = $longitude;
         $this->latitude = $latitude;
         $this->datum = $datum;
-        $this->opmerking = $opmerking;
+//        $this->opmerking = $opmerking;
+
     }
 
 
@@ -53,14 +52,17 @@ class klacht
     {
         return $this->extraDetail = $extraDetail;
     }
+
     function set_image($image)
     {
         return $this->image = $image;
     }
+
     function set_naam($naam)
     {
         return $this->naam = $naam;
     }
+
     function set_email($email)
     {
         return $this->email = $email;
@@ -75,6 +77,7 @@ class klacht
     {
         return $this->latitude = $latitude;
     }
+
     function set_datum($datum)
     {
         return $this->datum = $datum;
@@ -84,6 +87,7 @@ class klacht
     {
         return $this->opmerking = $opmerking;
     }
+
     function get_wijken_Id()
     {
         return $this->wijken_Id;
@@ -103,14 +107,17 @@ class klacht
     {
         return $this->extraDetail;
     }
+
     function get_image()
     {
         return $this->image;
     }
+
     function get_naam()
     {
         return $this->naam;
     }
+
     function get_email()
     {
         return $this->email;
@@ -125,6 +132,7 @@ class klacht
     {
         return $this->latitude;
     }
+
     function get_datum()
     {
         return $this->datum;
@@ -162,37 +170,40 @@ class klacht
 
     public function create()
     {
+        try {
+            global $conn;
+            $id = NULL;
+            $wijken_Id = $this->get_wijken_Id();
+            $status_Id = $this->get_status_Id();
+            $klachtOmschrijving = $this->get_klachtOmschrijving();
+            $extraDetail = $this->get_extraDetail();
+            $image = $this->get_image();
+            $naam = $this->get_naam();
+            $email = $this->get_email();
+            $longitude = $this->get_longitude();
+            $latitude = $this->get_latitude();
+            $datum = $this->get_datum();
+            $opmerking = $this->get_opmerking();
 
-        global $conn;
-        $id = NULL;
-        $wijken_Id = $this->get_wijken_Id();
-        $status_Id = $this->get_status_Id();
-        $klachtOmschrijving = $this->get_klachtOmschrijving();
-        $extraDetail = $this->get_extraDetail();
-        $image = $this->get_image();
-        $naam = $this->get_naam();
-        $email = $this->get_email();
-        $longitude = $this->get_longitude();
-        $latitude = $this->get_latitude();
-        $datum = $this->get_datum();
-        $opmerking = $this->get_opmerking();
 
-        $sql = $conn->prepare("insert into klacht values(:Id,:wijken_Id, :status_Id, :klachtOmschrijving, :extraDetail, :image,:naam, :email, :longitude,
-                          :latitude, :datum, :opmerking)");
-        $sql->bindParam(":id", $id);
-        $sql->bindParam("wijken_Id", $wijken_Id);
-        $sql->bindParam("status_Id", $staId);
-        $sql->bindParam("klachtOmschrijving", $klachtOmschrijving);
-        $sql->bindParam("extraDetail", $extraDetail);
-        $sql->bindParam("image", $image);
-        $sql->bindParam("naam", $naam);
-        $sql->bindParam("email", $email);
-        $sql->bindParam("longitude", $longitude);
-        $sql->bindParam("latitude", $latitude);
-        $sql->bindParam("datum", $datum);
-        $sql->bindParam("opmerking", $opmerking);
-        $sql->execute();
-        echo "de klacht is toegevoegd";
+            $sql = $conn->prepare("INSERT INTO klacht VALUES (:id, :naam, :email,  :wijken_Id, :datum, :klachtOmschrijving,:extraDetail,  :image,:longitude,:latitude, :status_Id, :opmerking)");
+
+            $sql->bindParam(":id", $id);
+            $sql->bindParam(":naam", $naam);
+            $sql->bindParam(":email", $email);
+            $sql->bindParam(":wijken_Id", $wijken_Id);
+            $sql->bindParam(":datum", $datum);
+            $sql->bindParam(":klachtOmschrijving", $klachtOmschrijving);
+            $sql->bindParam(":extraDetail", $extraDetail);
+            $sql->bindParam(":image", $image);
+            $sql->bindParam(":longitude", $longitude);
+            $sql->bindParam(":latitude", $latitude);
+            $sql->bindParam(":status_Id", $status_Id);
+            $sql->bindParam(":opmerking", $opmerking);
+            $sql->execute();
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+        }
     }
 
     public function update($id)
@@ -212,7 +223,7 @@ class klacht
         $opmerking = $this->get_opmerking();
 
         $sql = $conn->prepare("update klacht set wijken_Id=:wijken_Id, status_Id=:status_Id, klachtOmschrijving=:klachtOmschrijving, extraDetail=:extraDetail, image=:image, 
-                  naam=:naam, email=:email, lonitude=:longitude, latitude=:latitude, datum=:datum, opmerking=:opmerking where id=:id");
+                  naam=:naam, email=:email, longitude=:longitude, latitude=:latitude, datum=:datum, opmerking=:opmerking where id=:id");
 
         $sql->bindParam(":id", $id);
         $sql->bindParam("wijken_Id", $wijken_Id);
@@ -248,14 +259,12 @@ class klacht
             echo $klacht["naam"] . "-";
             $this->set_email($klacht["email"]);
             echo $klacht["email"] . "-";
-            $this->set_longitude($klacht["longitude"]);
+            $this->oset_longitude($klacht["longitude"]);
             echo $klacht["longitude"] . "_";
             $this->set_latitude($klacht["latitude"]);
             echo $klacht["latitude"] . "-";
             $this->set_datum($klacht["datum"]);
             echo $klacht["datum"] . "-";
-            $this->set_omerking($klacht["opmerking"]);
-            echo $klacht["opmerking"] . "<br>";
 
         }
     }
@@ -265,25 +274,26 @@ class klacht
         global $conn;
         $sql = $conn->prepare("select * from klacht where id=:id");
         $sql->execute([":id" => $id]);
-        foreach ($sql as $klacht){
+        foreach ($sql as $klacht) {
             echo $klacht["Id"] . "<br>";
             echo $klacht["wijken_Id"] . "<br>";
             echo $klacht["status_Id"] . "<br>";
-            echo $this->klachtOmschrijving =$klacht["klachtOmschrijving"] . "<br>";
-            echo $this->extraDetail =$klacht["extraDetail"] . "<br>";
-            echo $this->image =$klacht["image"] . "<br>";
-            echo $this->naam =$klacht["naam"] . "<br>";
-            echo $this->email =$klacht["email"] . "<br>";
-            echo $this->longitude =$klacht["longitude"] . "<br>";
-            echo $this->latitude =$klacht["latitude"] . "<br>";
-            echo $this->datum =$klacht["datum"] . "<br>";
-            echo $this->opmerking =$klacht["opmerking"] . "";
+            echo $this->klachtOmschrijving = $klacht["klachtOmschrijving"] . "<br>";
+            echo $this->extraDetail = $klacht["extraDetail"] . "<br>";
+            echo $this->image = $klacht["image"] . "<br>";
+            echo $this->naam = $klacht["naam"] . "<br>";
+            echo $this->email = $klacht["email"] . "<br>";
+            echo $this->longitude = $klacht["longitude"] . "<br>";
+            echo $this->latitude = $klacht["latitude"] . "<br>";
+            echo $this->datum = $klacht["datum"] . "<br>";
         }
 
     }
-    public function delete($id){
+
+    public function delete($id)
+    {
         global $conn;
-        $sql =$conn->prepare("DELETE FROM klacht where id =:id");
+        $sql = $conn->prepare("DELETE FROM klacht where id =:id");
         $sql->bindParam(":id", $id);
         $sql->execute();
 
