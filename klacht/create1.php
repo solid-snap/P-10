@@ -18,9 +18,7 @@ try {
 }
 
 try {
-    $select_status= $conn->prepare("SELECT * FROM status");
-    $select_status->execute();
-    $status=$select_status->fetchAll();
+
     $select_wijk= $conn->prepare("SELECT * FROM wijk");
     $select_wijk->execute();
     $wijken = $select_wijk->fetchAll();
@@ -51,6 +49,7 @@ try {
                     foreach($wijken as $wijk) {
                         echo " <option value=" .  $wijk['naam'] . ">" . $wijk['naam']. "</option>";
 
+
                     }
 
                     ?>
@@ -80,9 +79,8 @@ try {
         </div>
 
         <div class="form-row">
-            <input type ="hidden" id="longitude">
-            <input type="hidden" id="latitude">
-            <input type="hidden" name="status" value="<?php foreach($status as $st) {echo $st['naam'];} ?>">
+            <input type ="hidden" name="longitude" id="longitude">
+            <input type="hidden" name="latitude" id="latitude">
             <input type="submit" value="Verzenden">
         </div>
         <script>

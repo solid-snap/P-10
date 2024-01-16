@@ -6,29 +6,29 @@
 </head>
 <body>
 
-        <?php
-        require "klacht.php";
+<?php
+require "klacht.php";
 
-        // uitlezen vakjes van KlantenCreate1 -----
-        $naam=$_POST["naam"];
-        $email=$_POST["email"];
-        $wijk=$_POST["wijk"];
-        $datum=$_POST["datum"];
-        $naamklacht=$_POST["naamklacht"];
-        $omschrijving=$_POST["omschrijving"];
-        $foto=$_POST["foto"];
-        $longitude=$_POST["longitude"];
-        $latitude=$_POST["latitude"];
-        $status=$_POST["status"];
+// uitlezen vakjes van KlantenCreate1 -----
+$naam = $_POST["naam"];
+$email = $_POST["email"];
+$wijk = $_POST["wijk"];
+$datum = $_POST["datum"];
+$naamklacht = $_POST["naamklacht"];
+$omschrijving = $_POST["omschrijving"];
+$foto = $_POST["foto"];
+$longitude = $_POST["longitude"];
+$latitude = $_POST["latitude"];
 
-        // maken object -------------------------------
-        $klacht = new klacht($naam, $email, $wijk, $datum, $naamklacht, $omschrijving,
-            $foto, $longitude, $latitude, $status);
-        $klacht->create();
 
-        // afdrukken object ---------------------------
+// maken object -------------------------------
+$klacht = new klacht($naam, $email, $wijk, $datum, $naamklacht,
+    $foto, $longitude, $latitude);
+$klacht->create();
 
-        ?>
-    </body>
+// afdrukken object ---------------------------
+
+?>
+</body>
 </html>
 
