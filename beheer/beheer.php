@@ -70,7 +70,7 @@ values (:id,:username, :password)");
         echo "!: </br>";
 
     }
-//niet gebruikt
+// deze methode wordt niet gebruikt
     public function readBeheer()
     {
         global $conn;

@@ -7,7 +7,7 @@
             <ul>
                 <li><a href="">Home</a></li>
                 <li><a href="">.</a></li>
-                <li><a href="login.php">login</a></li>
+                <li><a href="../beheer/beheerCreate1.php">aanmelden</a></li>
             </ul>
         </nav>
     </div>
@@ -94,4 +94,4 @@
     </form>
     <H2><a href="?">?</a></H2>
 </div>
-<footer> ? </footer>
+<footer> beans </footer>
