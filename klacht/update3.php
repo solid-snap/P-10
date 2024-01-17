@@ -10,19 +10,17 @@
         require "klacht.php";
         // info from the array into the variables
         $Id = $_POST["Id"];
-        $opmerking = $_POST["opmerking"];
         $st = $_POST["status"];
 
 
         // making an object ---------------------------------------------------
-        $klacht = new klacht($Id, $opmerking, $st); // makes object
+        $klacht = new klacht($Id, $st); // makes object
         $klacht->update($Id);		           // changes the tableinfo voor objectinfo
         echo ". <br/>";
         echo $Id ."<br/>";
         $klacht->afdrukken();	                       // drukt object af
 
         ?>
-    </div>
     </body>
 </html>
 
