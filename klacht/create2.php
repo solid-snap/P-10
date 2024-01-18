@@ -9,21 +9,24 @@
 <?php
 require "klacht.php";
 
+
 // uitlezen vakjes van KlantenCreate1 -----
 $naam = $_POST["naam"];
 $email = $_POST["email"];
-$wijk = $_POST["wijk"];
 $datum = $_POST["datum"];
-$naamklacht = $_POST["naamklacht"];
-$omschrijving = $_POST["omschrijving"];
-$foto = $_POST["foto"];
+$klachtOmschrijving = $_POST["klachtOmschrijving"];
+$extraDetail =$_POST["extraDetail"];
 $longitude = $_POST["longitude"];
 $latitude = $_POST["latitude"];
+$status_Id = $_POST["status_Id"];
+$wijken_Id = $_POST["wijken_Id"];
+
+
+
 
 
 // maken object -------------------------------
-$klacht = new klacht($naam, $email, $wijk, $datum, $naamklacht,
-    $foto, $longitude, $latitude);
+$klacht = new klacht($naam, $email,$datum, $klachtOmschrijving, $extraDetail, $longitude, $latitude, $wijken_Id,$status_Id,);
 $klacht->create();
 
 // afdrukken object ---------------------------

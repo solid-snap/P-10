@@ -16,7 +16,7 @@ class klacht
     private $datum;
     private $opmerking;
     function __construct($naam = NULL, $email = NULL, $wijken_Id = NULL, $datum = NULL, $klachtOmschrijving = NULL, $image = NULL,
-                         $longitude = NULL, $latitude = NULL)
+                         $longitude = NULL, $latitude = NULL, $opmerking=null)
     {
         $this->wijken_Id = $wijken_Id;
         $this->klachtOmschrijving = $klachtOmschrijving;
@@ -26,7 +26,7 @@ class klacht
         $this->longitude = $longitude;
         $this->latitude = $latitude;
         $this->datum = $datum;
-//        $this->opmerking = $opmerking;
+       $this->opmerking = $opmerking;
     }
 
     function set_wijken_Id($wijken_Id)
@@ -143,6 +143,7 @@ class klacht
     }
     public function create()
     {
+        $id = NULL;
         $wijken_Id = $this->get_wijken_Id();
         $status_Id = $this->get_status_Id();
         $klachtOmschrijving = $this->get_klachtOmschrijving();
@@ -156,8 +157,8 @@ class klacht
         $opmerking = $this->get_opmerking();
         try {
             global $conn;
-            $id = NULL;
-            $sql = $conn->prepare("INSERT INTO klacht VALUES (:naam, :email, :wijken_Id, :datum, :klachtOmschrijving, :extraDetail, :image, :longitude, :latitude, :status_Id, :opmerking)");
+            $sql = $conn->prepare("INSERT INTO klacht VALUES (:Id,:naam, :email, :wijken_Id, :datum, :klachtOmschrijving, :extraDetail, :image, :longitude, :latitude, :status_Id, :opmerking)");
+            $sql->bindParam(":Id", $Id);
             $sql->bindParam(":naam", $naam);
             $sql->bindParam(":email", $email);
             $sql->bindParam(":wijken_Id", $wijken_Id);
@@ -239,7 +240,7 @@ class klacht
         $sql = $conn->prepare("select * from klacht where id=:id");
         $sql->execute([":id" => $id]);
         foreach ($sql as $klacht) {
-            echo $klacht["Id"] . "<br>";
+
             echo $klacht["wijken_Id"] . "<br>";
             echo $klacht["status_Id"] . "<br>";
             echo $this->klachtOmschrijving = $klacht["klachtOmschrijving"] . "<br>";
