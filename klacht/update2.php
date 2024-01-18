@@ -49,8 +49,7 @@
         ?>
 
         <form action="update3.php" method="post">
-            <input type="hidden" name="Id" value="<?php echo $Id;?>"><br>
-            <input type="text"   name="start"  value="<?php echo $opmerking;  ?> "><br>
+        <input type="hidden" name="Id" value="<?php echo $Id;?>"><br>
             <select id="status" name="status" >
 
                 <?php

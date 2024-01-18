@@ -88,8 +88,8 @@ try {
                 console.log(position.coords.longitude);
 
                 console.log(position.coords.latitude);
-                document.getElementById("latitude").value=position.coords.latitude
                 document.getElementById("longitude").value=position.coords.longitude
+                document.getElementById("latitude").value=position.coords.latitude
 
             }
 
