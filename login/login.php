@@ -1,13 +1,16 @@
 <link rel="stylesheet" href="../gemeenteStyle.css">
 <div class="pageInfo"><!-- HTML-form for login -->
 
-    <div class="topnav" id="myTopNav">
+    <div class="navigatie">
 
         <nav>
             <ul>
-                <li><a href="">Home</a></li>
-                <li><a href="">.</a></li>
-                <li><a href="../beheer/beheerCreate1.php">aanmelden</a></li>
+                <img src="../image/logo_rotterdam.svg" id=logo alt="logo van Gemeente Rotterdam" />
+                <a href="../beheer/beheerCreate1.php">aanmelden</a>
+                <a href="#">Klachten</a>
+                <a href="#">Random</a>
+                <a href="geolocation/map.php">Kaart</a>
+                <a href="../index.php">Home</a>
             </ul>
         </nav>
     </div>
@@ -92,6 +95,13 @@
         <input type="password" name="password" placeholder="password" required><br>
         <input type="submit" value="login">
     </form>
-    <H2><a href="?">?</a></H2>
 </div>
-<footer> beans </footer>
+
+<footer>
+    <div class="footer_rotterdam">
+        Gemeente <br> Rotterdam
+    </div>
+    <div class="contact">
+        <a href="../files_andere/contact.html">Contact</a>
+    </div>
+</footer>
