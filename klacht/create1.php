@@ -18,7 +18,7 @@ $status = $select_status->fetchAll();
     <link rel="stylesheet" href="klachttemp.css">
 </head>
 <body>
-<form action="create2.php" method="post">
+<form action="create2.php" method="post" enctype="multipart/form-data">
     <label for="naam">naam:</label>
     <input type="text" id="naam" name="naam"><br>
 
@@ -33,6 +33,9 @@ $status = $select_status->fetchAll();
 
     <label for="extraDetail">extra Detail:</label>
     <input type="text" id="extraDetail" name="extraDetail" ><br>
+
+    <label for="image">upload foto:</label>
+    <input type="file" id="image" name="image" accept="image/*"><br>
 
 
     <input type="hidden" name="longitude" id="longitude">
@@ -62,8 +65,6 @@ $status = $select_status->fetchAll();
         };
         navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
     </script>
-
-
 </form>
 </body>
 </html>
