@@ -50,6 +50,10 @@
 
         <form action="update3.php" method="post">
         <input type="hidden" name="Id" value="<?php echo $Id;?>"><br>
+
+            <label for="opmerking">opmerking:</label>
+            <input type="text" id="opmerking" name="opmerking"><br>
+
             <select id="status" name="status" >
 
                 <?php

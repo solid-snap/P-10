@@ -15,11 +15,12 @@ class klacht
     private $latitude;
     private $datum;
     private $opmerking;
-    function __construct($naam = NULL, $email = NULL, $status_Id=null, $wijken_Id = NULL, $datum = NULL, $klachtOmschrijving = NULL, $extraDetail=null, $image = NULL,
+    function __construct($naam = NULL, $email = NULL,$datum = NULL,  $status_Id=null, $wijken_Id = NULL, $klachtOmschrijving = NULL, $extraDetail=null, $image = NULL,
                          $longitude = NULL, $latitude = NULL, $opmerking=null)
     {
         $this->wijken_Id = $wijken_Id;
         $this->klachtOmschrijving = $klachtOmschrijving;
+        $this->status_Id=$status_Id;
         $this->extraDetail= $extraDetail;
         $this->image = $image;
         $this->naam = $naam;

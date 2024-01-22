@@ -1,3 +1,14 @@
+<?php
+require"../DbConnect.php";
+global $conn;
+$select_wijk = $conn->prepare("SELECT * FROM wijk ");
+$select_wijk->execute();
+$wijken = $select_wijk->fetchAll();
+
+$select_status = $conn->prepare("SELECT * FROM status where id=1");
+$select_status->execute();
+$status = $select_status->fetchAll();
+?>
 <!DOCTYPE html>
 <html lang="nl">
 <head>
@@ -7,114 +18,65 @@
     <link rel="stylesheet" href="klachttemp.css">
 </head>
 <body>
-<?php
-$username = "root";
-$password = "root";
-try {
-    $conn = new PDO("mysql:host=localhost;dbname=p10",$username, $password);
+<form action="create2.php" method="post">
+    <label for="naam">naam:</label>
+    <input type="text" id="naam" name="naam"><br>
 
-}catch (PDOException $error){
-    echo $error->getMessage();
-}
+    <label for="email">email:</label>
+    <input type="text" id="email" name="email"><br>
 
-try {
+    <label for="datum">datum:</label>
+    <input type="date" id="datum" name="datum"><br>
 
-    $select_wijk= $conn->prepare("SELECT * FROM wijk");
-    $select_wijk->execute();
-    $wijken = $select_wijk->fetchAll();
-}catch (PDOException $error){
-    echo $error->getMessage();
-}
+    <label for="klachtOmschrijving">klacht Omschrijving:</label>
+    <input type="text" id="klachtOmschrijving" name="klachtOmschrijving"><br>
 
-?>
+    <label for="extraDetail">extra Detail:</label>
+    <input type="text" id="extraDetail" name="extraDetail" ><br>
 
-<div class="form-container">
-    <form action="create2.php" method="post">
-        <div class="form-row">
-            <div class="half-width">
-                <label for="naam">Naam:</label>
-                <input type="text" id="naam" name="naam" >
-            </div>
-            <div class="half-width">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" >
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="half-width">
-                <label for="wijk">wijk:</label>
-                <select id="wijk" name="wijk" >
-
-                    <?php
-                    foreach($wijken as $wijk) {
-                        echo " <option value=" .  $wijk['naam'] . ">" . $wijk['naam']. "</option>";
+    <label for="image">upload foto:</label>
+    <input type="file" id="image" name="image" accept="image/*"><br>
 
 
-                    }
+    <input type="hidden" name="longitude" id="longitude">
+    <input type="hidden" name="latitude" id="latitude">
+    <label for="wijken_Id">wijk:</label>
+    <select id="wijken_Id" name="wijken_Id">
+        <?php
+        foreach ($wijken as $wijk) {
+            echo " <option value=" . $wijk['Id'] . ">" . $wijk['naam'] . "</option>";
+        }
+        ?>
+    </select>
+    <input type="hidden" name="status_Id" value="<?php foreach ($status as $status_Id) {
+        echo $status_Id['id'];
+    } ?>">
 
-                    ?>
-
-                </select>
-
-                <label for="datum">Datum:</label>
-                <input type="date" id="datum" name="datum" >
-            </div>
-        </div>
-        <div class="form-row">
-
-            <div class="half-width">
-                <label for="naamklacht">Naamklacht:</label>
-                <input type="text" id="naamklacht" name="naamklacht" >
-            </div>
-        </div>
-        <div class="form-row">
-            <label for="omschrijving">Omschrijving:</label>
-            <textarea id="omschrijving" name="omschrijving" rows="4"></textarea>
-        </div>
-        <div class="form-row">
-            <label for="foto">Selecteer een foto:</label>
-            <div class="file-container">
-                <input type="file" id="foto" name="foto" accept="image/*">
-            </div>
-        </div>
-
-        <div class="form-row">
-            <input type ="hidden" name="longitude" id="longitude">
-            <input type="hidden" name="latitude" id="latitude">
-            <input type="submit" value="Verzenden">
-        </div>
-        <script>
-            const successCallback = (position) => {
-                console.log(position.coords.longitude);
-
-                console.log(position.coords.latitude);
-                document.getElementById("longitude").value=position.coords.longitude
-                document.getElementById("latitude").value=position.coords.latitude
-
-            }
-
-
-
-            const errorCallback = (error) => {
-                console.log(error);
-            };
-
-            navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
-        </script>
-        <?php if (isset($_FILES['image'])) {
-            $uploadDirectory = 'uploads/';
-            $uploadedFile = $_FILES['image']['tmp_name'];
-            $uploadedFileName = $_FILES['image']['name'];
-            $targetPath = $uploadDirectory . $uploadedFileName;
-            if (move_uploaded_file($uploadedFile, $targetPath)) {
-                echo 'Image uploaded successfully.';
-            }
-            else {
-                echo 'Error uploading image.';
-            }
-        }?>
-    </form>
-</div>
+    <input type="submit" value="verzenden">
+    <script>
+        const successCallback = (position) => {
+            console.log(position.coords.longitude);
+            console.log(position.coords.latitude);
+            document.getElementById("longitude").value = position.coords.longitude
+            document.getElementById("latitude").value = position.coords.latitude
+        }
+        const errorCallback = (error) => {
+            console.log(error);
+        };
+        navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+    </script>
+    <?php if (isset($_FILES['image'])) {
+        $uploadDirectory = 'uploads/';
+        $uploadedFile = $_FILES['image']['tmp_name'];
+        $uploadedFileName = $_FILES['image']['name'];
+        $targetPath = $uploadDirectory . $uploadedFileName;
+        if (move_uploaded_file($uploadedFile, $targetPath)) {
+            echo 'Image uploaded successfully.';
+        } else {
+            echo 'Error uploading image.';
+        }
+    } ?>
+</form>
 </body>
 <footer>
     <div class="footer_rotterdam">
