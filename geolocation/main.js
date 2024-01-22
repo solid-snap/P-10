@@ -22,8 +22,5 @@
     timeout: 7000,
     maximumAge: 0,
 };
-    fetch('get_marker.php')
-        .then(response => response.text())
-        .then(data => console.log(data));
 
     navigator.geolocation.getCurrentPosition(success, error, options);
