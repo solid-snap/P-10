@@ -1,6 +1,6 @@
+<!DOCTYPE html>
 <?php
-require"../DbConnect.php";
-global $conn;
+require "../DbConnect.php";
 $select_wijk = $conn->prepare("SELECT * FROM wijk ");
 $select_wijk->execute();
 $wijken = $select_wijk->fetchAll();
@@ -9,7 +9,7 @@ $select_status = $conn->prepare("SELECT * FROM status where id=1");
 $select_status->execute();
 $status = $select_status->fetchAll();
 ?>
-<!DOCTYPE html>
+
 <html lang="nl">
 <head>
     <meta charset="UTF-8">
@@ -32,7 +32,7 @@ $status = $select_status->fetchAll();
     <input type="text" id="klachtOmschrijving" name="klachtOmschrijving"><br>
 
     <label for="extraDetail">extra Detail:</label>
-    <input type="text" id="extraDetail" name="extraDetail" ><br>
+    <input type="text" id="extraDetail" name="extraDetail"><br>
 
     <label for="image">upload foto:</label>
     <input type="file" id="image" name="image" accept="image/*"><br>
@@ -78,12 +78,4 @@ $status = $select_status->fetchAll();
     } ?>
 </form>
 </body>
-<footer>
-    <div class="footer_rotterdam">
-        Gemeente <br> Rotterdam
-    </div>
-    <div class="contact">
-        <a href="../files_andere/contact.html">Contact</a>
-    </div>
-</footer>
 </html>
