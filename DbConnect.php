@@ -7,7 +7,7 @@ error_reporting(E_ALL);
 $servername = "localhost";
 $dbname = "p10";
 $username = "root";
-$DBpassword = "";
+$DBpassword = "root";
 
 try{
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $DBpassword);

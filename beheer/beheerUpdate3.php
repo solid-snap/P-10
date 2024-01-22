@@ -6,9 +6,11 @@
 </head>
 <body>
 <link rel="stylesheet" href="../gemeenteStyle.css">
-<div class="pageInfo">
-    <div class="topnav" id="myTopNav">
-        <h2><a href="../login/login.php" class="active">go back to login</a></h2>
+    <div class="navigatie">
+        <nav>
+            <img src="../image/logo_rotterdam.svg" id=logo alt="logo van Gemeente Rotterdam" />
+            <a href="../login/login.php" class="active">Go Back To Login</a>
+        </nav>
     </div>
     <h1>Update beheer Formulier 3</h1>
     <?php
@@ -28,5 +30,12 @@
     ?>
 </div>
 </body>
-<footer>  </footer>
+<footer>
+    <div class="footer_rotterdam">
+        Gemeente <br> Rotterdam
+    </div>
+    <div class="contact">
+        <a href="../files_andere/contact.html">Contact</a>
+    </div>
+</footer>
 </html>

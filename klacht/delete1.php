@@ -12,4 +12,12 @@
             <br>
         </form>
     </body>
+<footer>
+    <div class="footer_rotterdam">
+        Gemeente <br> Rotterdam
+    </div>
+    <div class="contact">
+        <a href="../files_andere/contact.html">Contact</a>
+    </div>
+</footer>
 </html>
