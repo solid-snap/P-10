@@ -4,7 +4,7 @@ function success(pos) {
     const Lat = pos.coords.latitude;
     const Lng = pos.coords.longitude;
 
-    map = L.map('map').setView([Lat, Lng], 13);
+    map = L.map('map').setView([Lat, Lng], 19);
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -29,7 +29,7 @@ const options = {
 };
 
 navigator.geolocation.getCurrentPosition(success, error, options);
-
+//haalt al het informatie op vanuit get_marker.php
 function fetchDatabaseMarkers() {
     fetch("get_marker.php")
         .then(response => response.json())

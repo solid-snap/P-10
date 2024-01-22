@@ -13,7 +13,7 @@
                 crossorigin=""></script>
     </head>
     <body>
-    <script src="test.js"></script>
+    <script src="map.js"></script>
     <div id="map"></div>
 
 
