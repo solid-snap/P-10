@@ -8,7 +8,17 @@
 
 <?php
 require "klacht.php";
-var_dump($_POST);
+if (isset($_FILES['image'])) {
+    $uploadDirectory = '../uploads';
+    $uploadedFile = $_FILES['image']['tmp_name'];
+    $uploadedFileName = $_FILES['image']['name'];
+    $targetPath = $uploadDirectory . $uploadedFileName;
+    if (move_uploaded_file($uploadedFile, $targetPath)) {
+        echo 'Image uploaded successfully.';
+    } else {
+        echo 'Error uploading image.';
+    }
+}
 
 
 // uitlezen vakjes van KlantenCreate1 -----

@@ -205,7 +205,6 @@ class klacht
     public function update($id)
     {
         global $conn;
-        $id;
         $wijken_Id = $this->get_wijken_Id();
         $status_Id = $this->get_status_Id();
         $klachtOmschrijving = $this->get_klachtOmschrijving();
@@ -218,22 +217,23 @@ class klacht
         $datum = $this->get_datum();
         $opmerking = $this->get_opmerking();
 
-        $sql = $conn->prepare("update klacht set wijken_Id=:wijken_Id, status_Id=:status_Id, klachtOmschrijving=:klachtOmschrijving, extraDetail=:extraDetail, image=:image, 
-                  naam=:naam, email=:email, longitude=:longitude, latitude=:latitude, datum=:datum, opmerking=:opmerking where id=:id");
+        $sql = $conn->prepare("UPDATE klacht SET wijken_Id=:wijken_Id, status_Id=:status_Id, klachtOmschrijving=:klachtOmschrijving, extraDetail=:extraDetail, image=:image, 
+              naam=:naam, email=:email, longitude=:longitude, latitude=:latitude, datum=:datum, opmerking=:opmerking WHERE id=:id");
         $sql->bindParam(":id", $id);
-        $sql->bindParam("wijken_Id", $wijken_Id);
-        $sql->bindParam("status_Id", $status_Id);
-        $sql->bindParam("klachtOmschrijving", $klachtOmschrijving);
-        $sql->bindParam("extraDetail", $extraDetail);
-        $sql->bindParam("image", $image);
+        $sql->bindParam(":wijken_Id", $wijken_Id);
+        $sql->bindParam(":status_Id", $status_Id);
+        $sql->bindParam(":klachtOmschrijving", $klachtOmschrijving);
+        $sql->bindParam(":extraDetail", $extraDetail);
+        $sql->bindParam(":image", $image);
         $sql->bindParam(":naam", $naam);
-        $sql->bindParam("email", $email);
-        $sql->bindParam("longitude", $longitude);
-        $sql->bindParam("latitude", $latitude);
-        $sql->bindParam("datum", $datum);
-        $sql->bindParam("opmerking", $opmerking);
+        $sql->bindParam(":email", $email);
+        $sql->bindParam(":longitude", $longitude);
+        $sql->bindParam(":latitude", $latitude);
+        $sql->bindParam(":datum", $datum);
+        $sql->bindParam(":opmerking", $opmerking);
         $sql->execute();
     }
+
 
     public function read()
     {
@@ -241,9 +241,9 @@ class klacht
         $sql = $conn->prepare("SELECT * from klacht");
         $sql->execute();
         foreach ($sql as $klacht) {
-            echo $klacht ["Id"] . "-";
-            echo $klacht ["wijken_Id"] . "-";
-            echo $klacht ["status_Id"] . "-";
+            echo $klacht["Id"] . "-";
+            echo $klacht["wijken_Id"] . "-";
+            echo $klacht["status_Id"] . "-";
             $this->set_klachtOmschrijving($klacht["klachtOmschrijving"]);
             echo $klacht["klachtOmschrijving"] . "-";
             $this->set_extraDetail($klacht["extraDetail"]);
@@ -254,7 +254,7 @@ class klacht
             echo $klacht["naam"] . "-";
             $this->set_email($klacht["email"]);
             echo $klacht["email"] . "-";
-            $this->oset_longitude($klacht["longitude"]);
+            $this->set_longitude($klacht["longitude"]);  // Fix: Corrected the method name
             echo $klacht["longitude"] . "_";
             $this->set_latitude($klacht["latitude"]);
             echo $klacht["latitude"] . "-";
@@ -270,8 +270,7 @@ class klacht
         $sql->execute([":id" => $id]);
         foreach ($sql as $klacht) {
 
-            echo $klacht["wijken_Id"] . "<br>";
-            echo $klacht["status_Id"] . "<br>";
+
             echo $this->klachtOmschrijving = $klacht["klachtOmschrijving"] . "<br>";
             echo $this->extraDetail = $klacht["extraDetail"] . "<br>";
             echo $this->image = $klacht["image"] . "<br>";
