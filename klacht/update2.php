@@ -11,7 +11,7 @@
 <?php
 require "klacht.php"; // necessary to make an object
 
-// Check if Id is set in the POST data
+// Check if id is set in the POST data
 $Id = isset($_POST["Id"]) ? $_POST["Id"] : null;
 
 $klacht = new klacht(); // making the object
@@ -31,6 +31,7 @@ $latitude = $klacht->get_latitude();
 $longitude = $klacht->get_longitude();
 
 // Fetch status data
+global $conn;
 $select_status = $conn->prepare("SELECT * FROM status");
 $select_status->execute();
 $status = $select_status->fetchAll();
@@ -47,14 +48,14 @@ $wijk = $select_wijk->fetchAll();
     <input type="hidden" name="latitude" value="<?php echo $latitude; ?>"><br>
     <input type="text" name="naam" value="<?php echo $naam; ?>"><br>
     <input type="text" name="email" value="<?php echo $email; ?>"><br>
-    <input type="date" name="datum" value="<?php echo $datum; ?>"><br>
+    <input type="text" name="datum" value="<?php echo $datum; ?>"><br>
     <input type="text" name="klachtOmschrijving" value="<?php echo $klachtOmschrijving; ?>"><br>
     <input type="text" name="extraDetail" value="<?php echo $extraDetail; ?>"><br>
     <input type="text" name="image" value="<?php echo $image; ?>"><br>
     <select id="wijken_Id" name="wijken_Id">
         <?php
         foreach ($wijk as $wijken) {
-            echo "<option value=" . $wijken['id'] . ">" . $wijken['naam'] . "</option>";
+            echo "<option value=" . $wijken['Id'] . ">" . $wijken['naam'] . "</option>";
         }
         ?>
     </select><br>
