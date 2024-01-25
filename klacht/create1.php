@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-require"../DbConnect.php";
+require "../DbConnect.php";
 $select_wijk = $conn->prepare("SELECT * FROM wijk ");
 $select_wijk->execute();
 $wijken = $select_wijk->fetchAll();
@@ -32,7 +32,10 @@ $status = $select_status->fetchAll();
     <input type="text" id="klachtOmschrijving" name="klachtOmschrijving"><br>
 
     <label for="extraDetail">extra Detail:</label>
-    <input type="text" id="extraDetail" name="extraDetail" ><br>
+    <input type="text" id="extraDetail" name="extraDetail"><br>
+
+    <label for="image">upload foto:</label>
+    <input type="file" id="image" name="image" accept="image/*"><br>
 
 
     <input type="hidden" name="longitude" id="longitude">
@@ -62,8 +65,17 @@ $status = $select_status->fetchAll();
         };
         navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
     </script>
-
-
+    <?php if (isset($_FILES['image'])) {
+        $uploadDirectory = 'uploads/';
+        $uploadedFile = $_FILES['image']['tmp_name'];
+        $uploadedFileName = $_FILES['image']['name'];
+        $targetPath = $uploadDirectory . $uploadedFileName;
+        if (move_uploaded_file($uploadedFile, $targetPath)) {
+            echo 'Image uploaded successfully.';
+        } else {
+            echo 'Error uploading image.';
+        }
+    } ?>
 </form>
 </body>
 </html>

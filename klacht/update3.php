@@ -1,27 +1,36 @@
-<!DOCTYPE html>
-<html lang="nl">
-<head>
-    <!--shiano william-->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
-        <?php
-        require "klacht.php";
-        // info from the array into the variables
+<?php
+require "../DbConnect.php";
+require "klacht.php";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    try {
+        var_dump($_POST);
         $Id = $_POST["Id"];
-        $st = $_POST["status"];
+        $longitude = $_POST["longitude"];
+        $latitude = $_POST["latitude"];
+        $naam = $_POST["naam"];
+        $email = $_POST["email"];
+        $datum = $_POST["datum"];
+        $klachtOmschrijving = $_POST["klachtOmschrijving"];
+        $extraDetail = $_POST["extraDetail"];
+        $image = $_POST["image"];
+        $wijken_Id = $_POST["wijken_Id"];
+        $opmerking = $_POST["opmerking"];
+        $status_Id = $_POST["status"];
 
+        // Create an instance of the klacht class
+        $klacht = new klacht($naam, $email, $datum, $klachtOmschrijving, $extraDetail, $image, $longitude, $latitude, $wijken_Id, $status_Id, $opmerking,);
 
-        // making an object ---------------------------------------------------
-        $klacht = new klacht($Id, $st); // makes object
-        $klacht->update($Id);		           // changes the tableinfo voor objectinfo
-        echo ". <br/>";
-        echo $Id ."<br/>";
-        $klacht->afdrukken();	                       // drukt object af
+        // Update the record
+        $klacht->update($Id);
 
-        ?>
-    </body>
-</html>
-
-
+        echo "Update successful!";
+    } catch (PDOException $e) {
+        echo "Update failed: " . $e->getMessage();
+    }
+} else {
+    // Redirect if accessed directly without POST request
+    header("Location: index.php"); // Replace with the appropriate redirection URL
+    exit();
+}
+?>
