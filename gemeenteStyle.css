@@ -72,3 +72,7 @@ nav{
 }
 
 #map { height: 500px; }
+
+p{
+    text-align: center;
+}
