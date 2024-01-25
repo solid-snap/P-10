@@ -15,9 +15,17 @@ $status = $select_status->fetchAll();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Klachtenformulier</title>
-    <link rel="stylesheet" href="klachttemp.css">
+    <link rel="stylesheet" href="../gemeenteStyle.css">
 </head>
 <body>
+<div class="navigatie">
+    <nav>
+        <img src="../image/logo_rotterdam.svg" id=logo alt="logo van Gemeente Rotterdam"/>
+        <a href="login/login.php">login</a>
+        <a href="../klacht/create1.php">Klachten</a>
+        <a href="geolocation/map.php">Kaart</a>
+    </nav>
+</div>
 <form action="create2.php" method="post">
     <label for="naam">naam:</label>
     <input type="text" id="naam" name="naam"><br>
@@ -78,4 +86,12 @@ $status = $select_status->fetchAll();
     } ?>
 </form>
 </body>
+<footer>
+    <div class="footer_rotterdam">
+        Gemeente <br> Rotterdam
+    </div>
+    <div class="contact">
+        <a href="../files_andere/contact.html">Contact</a>
+    </div>
+</footer>
 </html>

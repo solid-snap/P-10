@@ -1,3 +1,17 @@
+<html>
+<head>
+    <link rel="stylesheet" href="../gemeenteStyle.css">
+</head>
+<body>
+<div class="navigatie">
+    <nav>
+        <img src="../image/logo_rotterdam.svg" id=logo alt="logo van Gemeente Rotterdam"/>
+        <a href="login/login.php">login</a>
+        <a href="../klacht/create1.php">Klachten</a>
+        <a href="geolocation/map.php">Kaart</a>
+    </nav>
+</div>
+
 <?php
 require "../DbConnect.php";
 require "klacht.php";
@@ -34,3 +48,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     exit();
 }
 ?>
+</body>
+<footer>
+    <div class="footer_rotterdam">
+        Gemeente <br> Rotterdam
+    </div>
+    <div class="contact">
+        <a href="../files_andere/contact.html">Contact</a>
+    </div>
+</footer>
+</html>
