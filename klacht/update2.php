@@ -5,15 +5,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Page Title</title> <!-- Add a title for your webpage -->
+    <!-- Add JavaScript script -->
+    <script>
+        // Function to check if klacht is older than two weeks
+        function checkKlachtDate() {
+            var currentDate = new Date();
+            var klachtDate = new Date("<?php echo date('Y/m/d', strtotime($datum)); ?>"); // Assuming $datum contains the klacht date in yy/mm/dd format
+
+            // Calculate the difference in milliseconds
+            var timeDifference = currentDate - klachtDate;
+
+            // Convert milliseconds to days
+            var daysDifference = timeDifference / (1000 * 60 * 60 * 24);
+
+            // Check if the klacht is older than two weeks (14 days)
+            if (daysDifference > 14) {
+                alert("deze klacht is ouder dan 2 weken!\nCurrent Date: " + currentDate + "\nKlacht Date: " + klachtDate);
+            }
+        }
+
+        // Call the function when the page is loaded
+        window.onload = checkKlachtDate;
+    </script>
 </head>
 <body>
 
 <?php
-require "klacht.php"; // necessary to make an object
+require "klacht.php"; // n
+//
+//ecessary to make an object
 
 // Check if Id is set in the POST data
 // Check if id is set in the POST data
 $Id = isset($_POST["Id"]) ? $_POST["Id"] : null;
+
+
 
 $klacht = new klacht(); // making the object
 $klacht->search($Id);
@@ -41,6 +67,7 @@ $status = $select_status->fetchAll();
 $select_wijk = $conn->prepare("SELECT * FROM wijk");
 $select_wijk->execute();
 $wijk = $select_wijk->fetchAll();
+
 ?>
 
 <form action="update3.php" method="post">
