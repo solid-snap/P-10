@@ -14,6 +14,8 @@ require "klacht.php"; // necessary to make an object
 // Check if id is set in the POST data
 $Id = isset($_POST["Id"]) ? $_POST["Id"] : null;
 
+
+
 $klacht = new klacht(); // making the object
 $klacht->search($Id);
 
