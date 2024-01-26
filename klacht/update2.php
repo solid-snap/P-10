@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../gemeenteStyle.css">
-    <title>Your Page Title</title> <!-- Add a title for your webpage -->
     <!-- Add JavaScript script -->
     <script>
         // Function to check if klacht is older than two weeks
@@ -108,7 +107,6 @@ $wijk = $select_wijk->fetchAll();
     </select>
     <input type="submit"><br>
 </form>
-
 </body>
 <footer>
     <div class="footer_rotterdam">

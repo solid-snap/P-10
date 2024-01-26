@@ -2,28 +2,36 @@
 <html>
 <head>
 </head>
-<body>
-<link rel="stylesheet" href="../gemeenteStyle.css">
-<div class="pageInfo">
-    <div class="topnav" id="myTopNav">
-        <h2><a href="../login/login.php" class="active">go back to login</a></h2>
+    <body>
+    <link rel="stylesheet" href="../gemeenteStyle.css">
+    <div class="navigatie">
+        <nav>
+            <img src="../image/logo_rotterdam.svg" id=logo alt="logo van Gemeente Rotterdam"/>
+            <a href="../login/login.php" class="active">Go Back To Login</a>
+            <a href="../index.php">Home</a>
+        </nav>
     </div>
-    <?php
-    require "beheer.php";
-    $username=$_POST["usernameField"];
-    $password=$_POST["passwordField"];
+        <?php
+        require "beheer.php";
+        $username=$_POST["usernameField"];
+        $password=$_POST["passwordField"];
 
-    $gehashed = password_hash($password, null);
-    $password =$gehashed;
+        $gehashed = password_hash($password, null);
+        $password =$gehashed;
 
-    // maken object -------------------------------
-    $beheer1 = new beheer($username, $password);
-    $beheer1->createBeheer();
+        // maken object -------------------------------
+        $beheer1 = new beheer($username, $password);
+        $beheer1->createBeheer();
 
-    // afdrukken object ---------------------------
-
-    ?>
-</div>
-</body>
-<footer> ? </footer>
+        // afdrukken object ---------------------------
+        ?>
+    </body>
+<footer>
+    <div class="footer_rotterdam">
+        Gemeente <br> Rotterdam
+    </div>
+    <div class="contact">
+        <a href="../files_andere/contact.html">Contact</a>
+    </div>
+</footer>
 </html>

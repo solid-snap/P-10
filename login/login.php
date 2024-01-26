@@ -1,15 +1,11 @@
 <link rel="stylesheet" href="../gemeenteStyle.css">
-<div class="pageInfo"><!-- HTML-form for login -->
-
     <div class="navigatie">
 
         <nav>
             <ul>
                 <img src="../image/logo_rotterdam.svg" id=logo alt="logo van Gemeente Rotterdam" />
                 <a href="../beheer/beheerCreate1.php">aanmelden</a>
-                <a href="#">Klachten</a>
-                <a href="#">Random</a>
-                <a href="geolocation/map.php">Kaart</a>
+                <a href="../geolocation/map.php">Kaart</a>
                 <a href="../index.php">Home</a>
             </ul>
         </nav>
@@ -83,17 +79,17 @@
         $password = $_POST["password"];
 
         if ($beheer->login($username, $password)) {
-            header("location: login/UI.php");
+            header("location: UI.php");
         } else {
             echo "Failed to login!";
         }
     }
     ?>
 
-    <form method="POST" action="#">
+    <form method="POST" action="UI.php">
         <input type="text" name="username" placeholder="username" required><br>
         <input type="password" name="password" placeholder="password" required><br>
-        <input type="submit" value="login">
+        <input type="submit" value="login" >
     </form>
 </div>
 
