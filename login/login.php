@@ -81,7 +81,7 @@
         $password = $_POST["password"];
 
         if ($beheer->login($username, $password)) {
-            header("location: login/test.php");
+            header("location: login/UI.php");
         } else {
             echo "Failed to login!";
         }

@@ -9,7 +9,6 @@
 <?php
  require "klacht.php";
 
-
 // uitlezen vakjes van KlantenCreate1 -----
 $naam = $_POST["naam"];
 $email = $_POST["email"];
