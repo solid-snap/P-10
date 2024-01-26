@@ -4,13 +4,10 @@
 </head>
 <body>
 <link rel="stylesheet" href="../gemeenteStyle.css">
-<div class="navigatie">
-
-    <nav>
-        <img src="../image/logo_rotterdam.svg" id=logo alt="logo van Gemeente Rotterdam" />
-        <a href="../login/login.php"> Go back to Login</a>
-    </nav>
-</div>
+<div class="pageInfo">
+    <div class="topnav" id="myTopNav">
+        <h2><a href="../login/login.php" class="active">go back to login</a></h2>
+    </div>
     <?php
     require "beheer.php";
     $username=$_POST["usernameField"];
@@ -26,13 +23,7 @@
     // afdrukken object ---------------------------
 
     ?>
+</div>
 </body>
-<footer>
-    <div class="footer_rotterdam">
-        Gemeente <br> Rotterdam
-    </div>
-    <div class="contact">
-        <a href="../files_andere/contact.html">Contact</a>
-    </div>
-</footer>
+<footer> ? </footer>
 </html>

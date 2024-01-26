@@ -4,12 +4,14 @@
     <div class="navigatie">
 
         <nav>
+            <ul>
                 <img src="../image/logo_rotterdam.svg" id=logo alt="logo van Gemeente Rotterdam" />
                 <a href="../beheer/beheerCreate1.php">aanmelden</a>
                 <a href="#">Klachten</a>
                 <a href="#">Random</a>
                 <a href="geolocation/map.php">Kaart</a>
                 <a href="../index.php">Home</a>
+            </ul>
         </nav>
     </div>
 
@@ -87,7 +89,7 @@
         }
     }
     ?>
-<div class="center">
+
     <form method="POST" action="#">
         <input type="text" name="username" placeholder="username" required><br>
         <input type="password" name="password" placeholder="password" required><br>

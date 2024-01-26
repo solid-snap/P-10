@@ -1,6 +1,6 @@
+<!DOCTYPE html>
 <?php
-require"../DbConnect.php";
-global $conn;
+require "../DbConnect.php";
 $select_wijk = $conn->prepare("SELECT * FROM wijk ");
 $select_wijk->execute();
 $wijken = $select_wijk->fetchAll();
@@ -9,15 +9,23 @@ $select_status = $conn->prepare("SELECT * FROM status where id=1");
 $select_status->execute();
 $status = $select_status->fetchAll();
 ?>
-<!DOCTYPE html>
+
 <html lang="nl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Klachtenformulier</title>
-    <link rel="stylesheet" href="klachttemp.css">
+    <link rel="stylesheet" href="../gemeenteStyle.css">
 </head>
 <body>
+<div class="navigatie">
+    <nav>
+        <img src="../image/logo_rotterdam.svg" id=logo alt="logo van Gemeente Rotterdam"/>
+        <a href="login/login.php">login</a>
+        <a href="../klacht/create1.php">Klachten</a>
+        <a href="geolocation/map.php">Kaart</a>
+    </nav>
+</div>
 <form action="create2.php" method="post">
     <label for="naam">naam:</label>
     <input type="text" id="naam" name="naam"><br>
@@ -32,7 +40,7 @@ $status = $select_status->fetchAll();
     <input type="text" id="klachtOmschrijving" name="klachtOmschrijving"><br>
 
     <label for="extraDetail">extra Detail:</label>
-    <input type="text" id="extraDetail" name="extraDetail" ><br>
+    <input type="text" id="extraDetail" name="extraDetail"><br>
 
     <label for="image">upload foto:</label>
     <input type="file" id="image" name="image" accept="image/*"><br>
