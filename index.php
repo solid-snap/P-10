@@ -5,7 +5,7 @@
                 <nav>
                         <img src="image/logo_rotterdam.svg" id=logo alt="logo van Gemeente Rotterdam" />
                         <a href="login/login.php">Login</a>
-                        <a href="geolocation/map.php">Kaart</a>
+                        <a href="geolocation/map.php">Map</a>
                 </nav>
             </div>
             <div class="image">

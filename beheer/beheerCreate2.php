@@ -7,7 +7,8 @@
     <div class="navigatie">
         <nav>
             <img src="../image/logo_rotterdam.svg" id=logo alt="logo van Gemeente Rotterdam"/>
-            <a href="../login/login.php" class="active">Go Back To Login</a>
+            <a href="../login/UI.php">Go Back To Manage</a>
+            <a href="../geolocation/map.php">Map</a>
             <a href="../index.php">Home</a>
         </nav>
     </div>
