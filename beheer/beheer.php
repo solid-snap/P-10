@@ -47,21 +47,21 @@ class beheer
         echo $this->get_password();
         echo "<br/>";
     }
-// createRoute-methode:
+// create-methode:
 //voegt een nieuwe user toe aan de database
 //Het haalt de waarden van de eigenschappen op en voert een SQL-invoegquery uit.
     public function createBeheer()
     {
         global $conn;
-        // info from the objects into the statements
+        // info van objecten in de statements
         $id = NULL;
         $username = $this->get_username();
         $password = $this->get_password();
 
-        // prepares statement from the table
+        // prepares statement van de tabel
         $sql = $conn->Prepare("insert into beheer
 values (:id,:username, :password)");
-// variables into the statement
+// variables in statement plaatsen
         $sql->bindParam(":id", $id);
         $sql->bindParam(":username", $username);
         $sql->bindParam(":password", $password);
@@ -85,8 +85,8 @@ values (:id,:username, :password)");
             echo $beheer["password"] . " - ";
         }
     }
-//searchRoute-methode:
-//Deze methode zoekt een  user op basis van $routeID en toont de info
+//search-methode:
+//Deze methode zoekt een  user op basis van $ID en toont de info
 // Het voert een SQL-query uit met een parameter om de route te selecteren..
     public function searchBeheer($id)
     {
@@ -94,17 +94,17 @@ values (:id,:username, :password)");
         // sql statement
         $sql = $conn->prepare("select * from beheer
                                where id = :id");
-        // variables into the statement
+        // variables in statement plaatsen
         $sql->bindParam(":id", $id);
         $sql->execute();
-        // info from the array in object and prints it
+        // info van de array in object plaatsen en printen
         foreach ($sql as $beheer) {
             echo $beheer["id"] . "<br>";
             echo $this->username = $beheer["username"] . "<br>";
             echo $this->password = $beheer["password"] . "<br>";
         }
     }
-//deleteRoute-methode:
+//delete-methode:
 //Deze methode verwijdert een user uit de database met een  gegeven id
 // het voert een SQL-verwijderquery uit met een parameter om de route te verwijderen..
     public function deleteBeheer($id)
@@ -113,17 +113,17 @@ values (:id,:username, :password)");
         //statements
         $sql = $conn->prepare(" DELETE FROM beheer
         where id = :id");
-        // puts variables into the statement
+        //  variables in de statement plaatsen
         $sql->bindParam(":id", $id);
         $sql->execute();
     }
-//updateRoute-methode:
+//update-methode:
 //Deze methode werkt de gegevens van een bestaande user in de database bij op basis van id
 // Het voert een SQL-updatequery uit om de gegevens van de route te updaten
     public function updateBeheer($id)
     {
         global $conn;
-        // puts info from the variables into the statement
+        //  info van de  variables in statement plaatsen
         $id;
         $username = $this->get_username();
         $password = $this->get_password();
@@ -134,7 +134,7 @@ values (:id,:username, :password)");
 									set username=:username, password=:password  
 									where id=:id
 								 ");
-        // variables into the statements
+        // variables in  statements
 
         $sql->bindParam(":id", $id);
         $sql->bindParam(":username", $username);
