@@ -10,11 +10,11 @@ function success(pos) {
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
 
-    // Marker for the user's location
+    // locatie van de gebruiker
     const userMarker = L.marker([Lat, Lng], { icon: L.divIcon({ className: 'user-marker' }) }).addTo(map);
     userMarker.bindPopup("<b>Your Location</b><br>Latitude: " + Lat + "<br>Longitude: " + Lng).openPopup();
 
-    // Fetch and add markers from the database
+    // fetch alle markers
     fetchDatabaseMarkers();
 }
 
@@ -34,7 +34,7 @@ function fetchDatabaseMarkers() {
     fetch("get_marker.php")
         .then(response => response.json())
         .then(locations => {
-            // Iterate through locations and add markers to the map
+            // gaat door alle locaties en plaats ze op de map
             locations.forEach(location => {
                 var marker = new L.marker([location[1], location[2]])
                     .bindPopup(location[0])

@@ -23,10 +23,11 @@
                 </ul>
             </nav>
         </div>
-
+    <!--shows the map-->
     <div id="map">
         <script src="map.js"></script>
     </div>
+    <!----------------------------------------------->
 
     </body>
     <footer>
