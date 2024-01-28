@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../gemeenteStyle.css">
-    <title>Your Page Title</title> <!-- Add a title for your webpage -->
     <!-- Add JavaScript script -->
     <script>
         // Function to check if klacht is older than two weeks
@@ -33,9 +32,9 @@
 <div class="navigatie">
     <nav>
         <img src="../image/logo_rotterdam.svg" id=logo alt="logo van Gemeente Rotterdam"/>
-        <a href="login/login.php">login</a>
-        <a href="../klacht/create1.php">Klachten</a>
-        <a href="geolocation/map.php">Kaart</a>
+        <a href="../index.php">Home</a>
+        <a href="../geolocation/map.php">Map</a>
+        <a href="../login/UI.php">Go Back To Manage</a>
     </nav>
 </div>
 <?php
@@ -108,7 +107,6 @@ $wijk = $select_wijk->fetchAll();
     </select>
     <input type="submit"><br>
 </form>
-
 </body>
 <footer>
     <div class="footer_rotterdam">

@@ -4,18 +4,20 @@
 <div class="navigatie">
     <nav>
         <img src="../image/logo_rotterdam.svg" id=logo alt="logo van Gemeente Rotterdam" />
-        <a href="login.php">login</a>
-
-        <a href="../geolocation/map.php">Kaart</a>
+        <a href="login.php">Login</a>
+        <a href="../index.php">Home</a>
+        <a href="../geolocation/map.php">Map</a>
     </nav>
 </div>
 
-<h2>Klacht</h2>
-<a href="../klacht/create1.php">Maak een klacht</a>
+    <div class="leftwords">
+    <h2>Klacht</h2>
+        <a href="../klacht/klachtMenu.php">Maak een klacht</a>
 
-<h2>Shows</h2>
 
-<a href="../beheer/beheerMenu.php">Bekijk het beheer</a>
+        <h2>Beheer</h2>
+        <a href="../beheer/beheerMenu.php">Bekijk het beheer</a>
+    </div>
 
 </body>
 <footer>
