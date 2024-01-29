@@ -7,11 +7,15 @@ error_reporting(E_ALL);
 $servername = "localhost";
 $dbname = "p10";
 $username = "root";
+<<<<<<< Updated upstream
 $DBpassword = "root";
+=======
+$password = "root";
+>>>>>>> Stashed changes
 
 try{
-    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $DBpassword);
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
 } catch (PDOException $error){
-    echo $error->getMessage();
+    echo "connection failed" . $error->getMessage();
 }
 

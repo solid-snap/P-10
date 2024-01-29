@@ -13,24 +13,21 @@
                 crossorigin=""></script>
     </head>
     <body>
-    <div class="pageInfo">
-
         <div class="navigatie">
 
             <nav>
                 <ul>
                     <img src="../image/logo_rotterdam.svg" id=logo alt="logo van Gemeente Rotterdam" />
-                    <a href="../beheer/beheerCreate1.php">aanmelden</a>
-                    <a href="#">Klachten</a>
-                    <a href="#">Random</a>
+                    <a href="../login/login.php">Login</a>
                     <a href="../index.php">Home</a>
                 </ul>
             </nav>
         </div>
-
+    <!--shows the map-->
     <div id="map">
         <script src="map.js"></script>
     </div>
+    <!----------------------------------------------->
 
     </body>
     <footer>
